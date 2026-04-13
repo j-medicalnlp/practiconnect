@@ -22,7 +22,7 @@ export const CalendarPage = () => (
         {[
           { id: 'my-slots', label: '自分の枠', icon: 'fa-user' },
           { id: 'find-slots', label: '枠を探す', icon: 'fa-search' },
-          { id: 'requests', label: '申請管理', icon: 'fa-inbox', badge: '2' },
+          { id: 'requests', label: '申請管理', icon: 'fa-inbox', badge: '' },
         ].map((t, i) => (
           <button
             data-tab={t.id}
@@ -31,7 +31,7 @@ export const CalendarPage = () => (
           >
             <i class={`fas ${t.icon} text-xs`}></i>
             {t.label}
-            {t.badge && <span class="bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">{t.badge}</span>}
+            {t.badge ? <span class="bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">{t.badge}</span> : null}
           </button>
         ))}
       </div>
@@ -246,67 +246,19 @@ export const CalendarPage = () => (
       <div id="requests" class="cal-tab hidden">
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
           <h3 class="font-bold text-gray-800 mb-5">申請管理</h3>
-
-          <div class="space-y-4">
-            {/* Incoming */}
+          <div class="space-y-6">
             <div>
-              <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">受信した申請（2件）</h4>
-              <div class="space-y-3">
-                {[
-                  { name: '中村ゆき', date: '4月25日(金) 21:00〜22:00', genre: 'コーチング', tag: 'tag-coaching', msg: '初めてのコーチング練習で、施術者役をやってみたいです。よろしくお願いします！' },
-                  { name: '高橋けんじ', date: '4月25日(金) 21:00〜22:00', genre: 'コーチング', tag: 'tag-coaching', msg: 'NLPの学習と並行してコーチングも練習中です。クライアント役でお願いしたいです。' },
-                ].map(r => (
-                  <div class="border border-gray-100 rounded-xl p-4 bg-gray-50">
-                    <div class="flex items-start gap-3 mb-3">
-                      <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-teal-500 flex items-center justify-center flex-shrink-0">
-                        <span class="text-white font-bold text-sm">{r.name[0]}</span>
-                      </div>
-                      <div class="flex-1">
-                        <div class="flex items-center gap-2 flex-wrap">
-                          <p class="font-semibold text-gray-800 text-sm">{r.name}さん</p>
-                          <span class={`badge ${r.tag} text-xs`}>{r.genre}</span>
-                        </div>
-                        <p class="text-xs text-gray-500">{r.date}</p>
-                      </div>
-                    </div>
-                    <p class="text-sm text-gray-600 bg-white rounded-lg p-3 mb-3 border border-gray-100">"{r.msg}"</p>
-                    <div class="flex gap-2">
-                      <button class="btn-primary text-sm py-1.5 px-4 flex-1 justify-center"
-                        onclick="showToast('マッチングが成立しました！', 'success')">
-                        <i class="fas fa-check"></i>承認する
-                      </button>
-                      <button class="btn-danger flex-1 justify-center"
-                        onclick="showToast('申請を辞退しました', 'info')">
-                        <i class="fas fa-times"></i>辞退する
-                      </button>
-                    </div>
-                  </div>
-                ))}
+              <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">受信した申請</h4>
+              <div class="flex flex-col items-center justify-center py-8 text-gray-400 border border-dashed border-gray-200 rounded-xl">
+                <i class="fas fa-inbox text-3xl mb-2 text-gray-200"></i>
+                <p class="text-sm">受信した申請はありません</p>
               </div>
             </div>
-
-            <hr class="border-gray-100" />
-
-            {/* Outgoing */}
             <div>
-              <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">送信した申請（1件）</h4>
-              <div class="border border-gray-100 rounded-xl p-4 bg-amber-50">
-                <div class="flex items-center gap-3">
-                  <div class="w-9 h-9 rounded-full bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">佐</span>
-                  </div>
-                  <div class="flex-1">
-                    <div class="flex items-center gap-2">
-                      <p class="font-semibold text-gray-800 text-sm">佐藤みのりさん</p>
-                      <span class="badge tag-hypno text-xs">ヒプノセラピー</span>
-                      <span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full">返答待ち</span>
-                    </div>
-                    <p class="text-xs text-gray-500">4月22日(火) 14:00〜15:30</p>
-                  </div>
-                  <button class="text-red-400 hover:text-red-600 text-sm" onclick="showToast('申請をキャンセルしました', 'info')">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
+              <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">送信した申請</h4>
+              <div class="flex flex-col items-center justify-center py-8 text-gray-400 border border-dashed border-gray-200 rounded-xl">
+                <i class="fas fa-paper-plane text-3xl mb-2 text-gray-200"></i>
+                <p class="text-sm">送信した申請はありません</p>
               </div>
             </div>
           </div>

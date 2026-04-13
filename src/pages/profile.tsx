@@ -51,11 +51,11 @@ export const ProfilePage = () => (
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1.5">表示名<span class="text-red-500 ml-1">*</span></label>
-              <input type="text" class="form-input" value="田中さくら" placeholder="ニックネーム可" />
+              <input type="text" class="form-input" placeholder="ニックネーム可" />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1.5">居住エリア</label>
-              <input type="text" class="form-input" value="東京都（日本）" placeholder="都道府県・国" />
+              <input type="text" class="form-input" placeholder="都道府県・国" />
             </div>
           </div>
 
@@ -63,10 +63,10 @@ export const ProfilePage = () => (
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1.5">年齢層</label>
               <select class="form-input">
-                <option>非公開</option>
+                <option selected>非公開</option>
                 <option>10代</option>
                 <option>20代</option>
-                <option selected>30代</option>
+                <option>30代</option>
                 <option>40代</option>
                 <option>50代以上</option>
               </select>
@@ -74,8 +74,8 @@ export const ProfilePage = () => (
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1.5">性別</label>
               <select class="form-input">
-                <option>非公開</option>
-                <option selected>女性</option>
+                <option selected>非公開</option>
+                <option>女性</option>
                 <option>男性</option>
                 <option>その他</option>
               </select>
@@ -85,7 +85,8 @@ export const ProfilePage = () => (
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">タイムゾーン</label>
             <select class="form-input">
-              <option selected>Asia/Tokyo (JST UTC+9)</option>
+              <option value="">選択してください</option>
+                <option selected>Asia/Tokyo (JST UTC+9)</option>
               <option>Asia/Singapore (SGT UTC+8)</option>
               <option>Europe/London (GMT UTC+0)</option>
               <option>America/New_York (EST UTC-5)</option>
@@ -97,7 +98,7 @@ export const ProfilePage = () => (
             <div class="flex flex-wrap gap-2">
               {['日本語', '英語', '中国語', '韓国語', 'スペイン語', 'フランス語'].map((lang, i) => (
                 <label class="flex items-center gap-1.5 cursor-pointer">
-                  <input type="checkbox" class="rounded text-blue-600" checked={i < 2} />
+                  <input type="checkbox" class="rounded text-blue-600" />
                   <span class="text-sm text-gray-700">{lang}</span>
                 </label>
               ))}
@@ -119,24 +120,24 @@ export const ProfilePage = () => (
         <div class="space-y-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">自己紹介文</label>
-            <textarea class="form-input" rows={5} placeholder="学習歴・強み・練習スタイル・希望する相手の特徴などを記入してください">コーチングを学び始めて1年半になります。ICFアソシエイトコーチ取得を目指してNLPも並行して学習中です。特にラポール形成と質問技法を深めたいと思っています。週1〜2回、19〜22時台を中心に活動しています。</textarea>
+            <textarea class="form-input" rows={5} placeholder="学習歴・強み・練習スタイル・希望する相手の特徴などを記入してください"></textarea>
             <p class="text-xs text-gray-400 mt-1 text-right">0 / 500文字</p>
           </div>
 
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">学習歴・バックグラウンド</label>
-            <textarea class="form-input" rows={3} placeholder="スクール名・受講歴・学習期間など">○○コーチングスクール（2024年4月〜）在籍中。NLPプラクティショナー認定取得予定（2026年6月）。もともと看護師として20年間従事。</textarea>
+            <textarea class="form-input" rows={3} placeholder="スクール名・受講歴・学習期間など"></textarea>
           </div>
 
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">希望する練習スタイル</label>
             <div class="space-y-2">
               {[
-                { label: '振り返りをしっかり行いたい', checked: true },
+                { label: '振り返りをしっかり行いたい', checked: false },
                 { label: 'まずは実践第一でたくさんこなしたい', checked: false },
-                { label: '交互に役割を交代したい', checked: true },
+                { label: '交互に役割を交代したい', checked: false },
                 { label: '事前にテーマを決めて臨みたい', checked: false },
-                { label: '初学者同士でも歓迎', checked: true },
+                { label: '初学者同士でも歓迎', checked: false },
               ].map(s => (
                 <label class="flex items-center gap-2 cursor-pointer">
                   <input type="checkbox" class="rounded text-blue-600" checked={s.checked} />
@@ -198,49 +199,15 @@ export const ProfilePage = () => (
           </div>
         </div>
 
-        <div class="space-y-3">
-          {[
-            {
-              name: 'NLPプラクティショナー',
-              org: '日本NLP協会',
-              date: '取得予定：2026年6月',
-              status: '取得予定',
-              statusCls: 'bg-amber-100 text-amber-700',
-              icon: 'fa-brain',
-              color: 'text-green-600',
-            },
-            {
-              name: '○○コーチングスクール 修了証',
-              org: '○○コーチングスクール',
-              date: '2025年3月',
-              status: '取得済み',
-              statusCls: 'bg-green-100 text-green-700',
-              icon: 'fa-graduation-cap',
-              color: 'text-blue-600',
-            },
-          ].map(c => (
-            <div class="flex gap-4 p-4 border border-gray-100 rounded-xl bg-gray-50 group">
-              <div class="w-10 h-10 rounded-xl bg-white border border-gray-200 flex items-center justify-center flex-shrink-0">
-                <i class={`fas ${c.icon} ${c.color}`}></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 flex-wrap">
-                  <p class="font-semibold text-gray-800 text-sm">{c.name}</p>
-                  <span class={`badge text-xs ${c.statusCls}`}>{c.status}</span>
-                </div>
-                <p class="text-xs text-gray-500 mt-0.5">{c.org}</p>
-                <p class="text-xs text-gray-400">{c.date}</p>
-              </div>
-              <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-smooth">
-                <button class="text-blue-500 hover:text-blue-700 text-sm" title="編集">
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button class="text-red-400 hover:text-red-600 text-sm" title="削除">
-                  <i class="fas fa-trash"></i>
-                </button>
-              </div>
-            </div>
-          ))}
+        <div id="cert-list">
+          <div class="flex flex-col items-center justify-center py-8 text-gray-400">
+            <i class="fas fa-certificate text-4xl mb-3 text-gray-200"></i>
+            <p class="text-sm">資格・学歴はまだ登録されていません</p>
+            <button class="mt-3 text-sm text-blue-600 hover:underline"
+              onclick="document.getElementById('add-cert-form').classList.remove('hidden')">
+              + 追加する
+            </button>
+          </div>
         </div>
       </div>
 

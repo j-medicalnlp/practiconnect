@@ -35,12 +35,6 @@ export const NavBar = ({ active = '' }: { active?: string }) => (
           <a href="/register" class="btn-primary text-sm py-2 px-4">
             <i class="fas fa-user-plus"></i>無料登録
           </a>
-          <a href="/dashboard" class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 rounded-full px-3 py-1.5 transition-smooth" title="ダッシュボード（デモ）">
-            <div class="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center">
-              <span class="text-white text-xs font-bold">田</span>
-            </div>
-            <span class="text-sm text-gray-700 font-medium">田中さくら</span>
-          </a>
         </div>
 
         {/* Mobile menu button */}
@@ -148,18 +142,6 @@ export const DashboardLayout = ({ children, active = '' }: { children: any, acti
         </a>
       </div>
 
-      {/* User info */}
-      <div class="p-5 border-b border-gray-100">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center flex-shrink-0">
-            <span class="text-white text-sm font-bold">田</span>
-          </div>
-          <div class="overflow-hidden">
-            <p class="font-semibold text-gray-800 text-sm truncate">田中さくら</p>
-            <p class="text-xs text-gray-500">コーチング・NLP学習中</p>
-          </div>
-        </div>
-      </div>
 
       {/* Navigation */}
       <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
@@ -174,7 +156,6 @@ export const DashboardLayout = ({ children, active = '' }: { children: any, acti
         </a>
         <a href="/messages" class={`sidebar-link ${active === 'messages' ? 'active' : ''}`}>
           <i class="fas fa-envelope w-4 text-center"></i>メッセージ
-          <span class="ml-auto bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
         </a>
         <a href="/profile" class={`sidebar-link ${active === 'profile' ? 'active' : ''}`}>
           <i class="fas fa-user w-4 text-center"></i>プロフィール

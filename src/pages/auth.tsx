@@ -27,24 +27,6 @@ export const RegisterPage = () => (
         </div>
 
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-          {/* Social login */}
-          <div class="space-y-3 mb-6">
-            <button class="w-full flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3 hover:bg-gray-50 transition-smooth font-medium text-gray-700">
-              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5" alt="Google" />
-              Googleで登録
-            </button>
-            <button class="w-full flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3 hover:bg-gray-50 transition-smooth font-medium text-gray-700">
-              <i class="fab fa-apple text-gray-800 text-xl"></i>
-              Appleで登録
-            </button>
-          </div>
-
-          <div class="flex items-center gap-3 mb-6">
-            <div class="flex-1 h-px bg-gray-200"></div>
-            <span class="text-xs text-gray-400">または</span>
-            <div class="flex-1 h-px bg-gray-200"></div>
-          </div>
-
           {/* Registration form */}
           <form id="register-form" class="space-y-4">
             <div>
@@ -106,14 +88,14 @@ export const RegisterPage = () => (
               </label>
               <div class="grid grid-cols-2 gap-2">
                 {[
-                  { id: 'coaching', label: 'コーチング', icon: 'fa-comment-dots', cls: 'tag-coaching' },
-                  { id: 'counseling', label: 'カウンセリング', icon: 'fa-heart', cls: 'tag-counseling' },
-                  { id: 'nlp', label: 'NLP', icon: 'fa-brain', cls: 'tag-nlp' },
-                  { id: 'hypno', label: 'ヒプノセラピー', icon: 'fa-moon', cls: 'tag-hypno' },
+                  { id: 'coaching', label: 'コーチング', icon: 'fa-comment-dots' },
+                  { id: 'counseling', label: 'カウンセリング', icon: 'fa-heart' },
+                  { id: 'nlp', label: 'NLP', icon: 'fa-brain' },
+                  { id: 'hypno', label: 'ヒプノセラピー', icon: 'fa-moon' },
                 ].map(g => (
                   <label class="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2.5 cursor-pointer hover:border-blue-300 hover:bg-blue-50 transition-smooth">
                     <input type="checkbox" value={g.id} class="rounded text-blue-600" />
-                    <i class={`fas ${g.icon} text-sm`}></i>
+                    <i class={`fas ${g.icon} text-sm text-gray-500`}></i>
                     <span class="text-sm font-medium text-gray-700">{g.label}</span>
                   </label>
                 ))}
@@ -181,36 +163,18 @@ export const LoginPage = () => (
         </div>
 
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-          {/* Social login */}
-          <div class="space-y-3 mb-6">
-            <a href="/dashboard" class="w-full flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3 hover:bg-gray-50 transition-smooth font-medium text-gray-700">
-              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5" alt="Google" />
-              Googleでログイン
-            </a>
-            <button class="w-full flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3 hover:bg-gray-50 transition-smooth font-medium text-gray-700">
-              <i class="fab fa-apple text-gray-800 text-xl"></i>
-              Appleでログイン
-            </button>
-          </div>
-
-          <div class="flex items-center gap-3 mb-6">
-            <div class="flex-1 h-px bg-gray-200"></div>
-            <span class="text-xs text-gray-400">または</span>
-            <div class="flex-1 h-px bg-gray-200"></div>
-          </div>
-
           <form class="space-y-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1.5">メールアドレス</label>
-              <input type="email" class="form-input" placeholder="your@email.com" value="demo@practiconnect.jp" />
+              <input type="email" class="form-input" placeholder="your@email.com" />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1.5">
                 パスワード
-                <a href="/password-reset" class="float-right text-blue-600 hover:underline font-normal">忘れた場合</a>
+                <a href="/password-reset" class="float-right text-blue-600 hover:underline font-normal text-xs">パスワードを忘れた場合</a>
               </label>
               <div class="relative">
-                <input type="password" id="login-pw" class="form-input pr-10" placeholder="パスワード" value="demo1234" />
+                <input type="password" id="login-pw" class="form-input pr-10" placeholder="パスワード" />
                 <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   onclick="togglePassword('login-pw')">
                   <i class="fas fa-eye"></i>
@@ -219,7 +183,7 @@ export const LoginPage = () => (
             </div>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" class="rounded text-blue-600" checked />
+              <input type="checkbox" class="rounded text-blue-600" />
               <span class="text-sm text-gray-600">ログイン状態を保持する</span>
             </label>
 
@@ -232,12 +196,6 @@ export const LoginPage = () => (
             アカウントをお持ちでない方は
             <a href="/register" class="text-blue-600 hover:underline font-medium ml-1">無料登録</a>
           </p>
-
-          {/* Demo notice */}
-          <div class="mt-4 alert alert-info text-xs">
-            <i class="fas fa-info-circle text-blue-500 flex-shrink-0"></i>
-            <span>デモ用アカウント（demo@practiconnect.jp）でダッシュボードをご確認いただけます。</span>
-          </div>
         </div>
       </div>
     </div>
