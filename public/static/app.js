@@ -59,23 +59,24 @@ function initAd() {
   const ad = adItems[idx];
   currentAdUrl = ad.url;
 
+  // Update text content
   const titleEl = document.getElementById('ad-title');
   const descEl = document.getElementById('ad-desc');
   if (titleEl) titleEl.textContent = ad.title;
   if (descEl) descEl.textContent = ad.desc;
 
+  // Update the anchor href so native link behavior works correctly
+  const linkEl = document.getElementById('ad-link');
+  if (linkEl) linkEl.href = ad.url;
+
   // Update icon
-  const iconEl = banner.querySelector('.fa-graduation-cap, .fa-user-md, .fa-brain, .fa-hospital, .fa-shield-alt, .fa-star, .fa-chart-line');
+  const iconEl = document.getElementById('ad-icon');
   if (iconEl) {
     iconEl.className = `fas ${ad.icon} text-white text-lg`;
   }
 }
 
-function adBannerClick() {
-  if (currentAdUrl) {
-    window.open(currentAdUrl, '_blank', 'noopener,noreferrer');
-  }
-}
+// adBannerClick is no longer used (native <a> tag handles navigation)
 
 function closeAd() {
   const banner = document.getElementById('ad-banner');

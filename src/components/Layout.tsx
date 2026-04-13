@@ -2,29 +2,30 @@
 
 // Ad banner for j-medicalnlp.com services
 export const AdBanner = () => (
-  <div id="ad-banner" class="ad-banner rounded-2xl shadow-sm border border-blue-100 bg-gradient-to-r from-blue-50 to-teal-50 p-4 mb-5 cursor-pointer overflow-hidden relative"
-    onclick="adBannerClick()" style="min-height: 90px;">
-    <div class="flex items-center gap-4">
-      <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-teal-500 flex items-center justify-center flex-shrink-0 shadow-md">
-        <i class="fas fa-graduation-cap text-white text-lg"></i>
+  <div id="ad-banner" class="ad-banner rounded-2xl shadow-sm border border-blue-100 bg-gradient-to-r from-blue-50 to-teal-50 mb-5 overflow-hidden relative" style="min-height: 90px;">
+    {/* Clickable link layer - covers full banner */}
+    <a id="ad-link" href="https://www.j-medicalnlp.com" target="_blank" rel="noopener noreferrer"
+      class="flex items-center gap-4 p-4 no-underline group">
+      <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-teal-500 flex items-center justify-center flex-shrink-0 shadow-md group-hover:shadow-lg transition-shadow">
+        <i id="ad-icon" class="fas fa-graduation-cap text-white text-lg"></i>
       </div>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 mb-1">
           <span class="text-xs bg-blue-100 text-blue-700 font-semibold px-2 py-0.5 rounded-full">PR</span>
           <span class="text-xs text-gray-400">一般社団法人 日本メディカルNLP＆コーチング協会</span>
         </div>
-        <p id="ad-title" class="font-bold text-gray-800 text-sm leading-tight"></p>
+        <p id="ad-title" class="font-bold text-gray-800 text-sm leading-tight group-hover:text-blue-700 transition-colors">読み込み中...</p>
         <p id="ad-desc" class="text-xs text-gray-500 mt-0.5 leading-relaxed"></p>
       </div>
-      <div class="flex-shrink-0 hidden sm:block">
-        <span class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg font-medium">
-          詳しく見る <i class="fas fa-arrow-right ml-1"></i>
-        </span>
+      <div class="flex-shrink-0 hidden sm:flex items-center gap-1 text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg font-medium group-hover:bg-blue-700 transition-colors">
+        詳しく見る <i class="fas fa-arrow-right ml-1"></i>
       </div>
-    </div>
-    <div class="absolute top-2 right-2 text-xs text-gray-300 hover:text-gray-500 cursor-pointer" onclick="event.stopPropagation(); closeAd()">
-      <i class="fas fa-times"></i>
-    </div>
+    </a>
+    {/* Close button */}
+    <button class="absolute top-2 right-2 text-gray-300 hover:text-gray-500 transition-colors z-10 p-1"
+      onclick="closeAd()" title="閉じる" type="button">
+      <i class="fas fa-times text-xs"></i>
+    </button>
   </div>
 )
 
