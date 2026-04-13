@@ -8,6 +8,7 @@ import { CalendarPage } from './pages/calendar'
 import { MembersPage, MemberDetailPage } from './pages/members'
 import { MessagesPage } from './pages/messages'
 import { RulesPage, ReportPage } from './pages/rules'
+import { SettingsPage } from './pages/settings'
 
 const app = new Hono()
 
@@ -75,15 +76,6 @@ app.get('/contact', (c) => c.render(
   { title: 'お問い合わせ' }
 ))
 
-app.get('/settings', (c) => c.render(
-  <div>
-    <a href="/dashboard" style="display:inline-block;padding:12px 20px;background:#2563eb;color:white;border-radius:8px;text-decoration:none;margin:20px;">← ダッシュボードへ戻る</a>
-    <div style="max-width:600px;margin:0 auto;padding:20px;">
-      <h1 style="font-size:24px;font-weight:bold;margin-bottom:20px;">設定</h1>
-      <p>設定ページは現在準備中です。</p>
-    </div>
-  </div>,
-  { title: '設定' }
-))
+app.get('/settings', (c) => c.render(<SettingsPage />, { title: '設定' }))
 
 export default app

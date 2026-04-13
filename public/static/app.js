@@ -1,5 +1,92 @@
 // PractiConnect - Frontend JavaScript
 
+// =============================================
+// Ad Banner - j-medicalnlp.com Services
+// =============================================
+const adItems = [
+  {
+    title: 'メディカルコミュニケーションコーチ®養成講座',
+    desc: '医療現場のコミュニケーションをNLP・コーチングで変革。Coach・Trainer資格を取得できる本格プログラム。',
+    url: 'https://www.j-medicalnlp.com/medical-communication-coach',
+    icon: 'fa-user-md',
+  },
+  {
+    title: '医療従事者のためのNLP®資格認定講座',
+    desc: '医療・看護・介護の現場で活かせるNLPを専門家から学ぶ。プラクティショナー〜マスターまで段階的に習得。',
+    url: 'https://www.j-medicalnlp.com/medical-nlp',
+    icon: 'fa-brain',
+  },
+  {
+    title: '医療管理職向けコーチングセミナー',
+    desc: '病院管理職・クリニック院長・医療スタッフのリーダーシップとチームビルディングを強化する実践型研修。',
+    url: 'https://www.j-medicalnlp.com/management-coaching',
+    icon: 'fa-hospital',
+  },
+  {
+    title: 'NLPで変わる！医療現場のハラスメント対策',
+    desc: 'コミュニケーションの質を高め、ハラスメントのない職場環境を実現。チーム生産性の向上につながります。',
+    url: 'https://www.j-medicalnlp.com/harassment-prevention',
+    icon: 'fa-shield-alt',
+  },
+  {
+    title: '無料体験セミナー｜NLP×コーチング入門',
+    desc: '一般社団法人 日本メディカルNLP＆コーチング協会が提供する無料体験。まずは気軽に参加してみよう！',
+    url: 'https://www.j-medicalnlp.com/trial-seminar',
+    icon: 'fa-star',
+  },
+  {
+    title: '医療組織の生産性向上プログラム',
+    desc: 'NLP・コーチング手法を活用して医療現場の生産性と職員のQOLを同時に向上。組織全体が変わる研修。',
+    url: 'https://www.j-medicalnlp.com/productivity',
+    icon: 'fa-chart-line',
+  },
+];
+
+let currentAdIndex = -1;
+let currentAdUrl = '';
+
+function initAd() {
+  const banner = document.getElementById('ad-banner');
+  if (!banner) return;
+
+  // Pick a random ad different from the last one
+  let idx;
+  do {
+    idx = Math.floor(Math.random() * adItems.length);
+  } while (idx === currentAdIndex && adItems.length > 1);
+  currentAdIndex = idx;
+
+  const ad = adItems[idx];
+  currentAdUrl = ad.url;
+
+  const titleEl = document.getElementById('ad-title');
+  const descEl = document.getElementById('ad-desc');
+  if (titleEl) titleEl.textContent = ad.title;
+  if (descEl) descEl.textContent = ad.desc;
+
+  // Update icon
+  const iconEl = banner.querySelector('.fa-graduation-cap, .fa-user-md, .fa-brain, .fa-hospital, .fa-shield-alt, .fa-star, .fa-chart-line');
+  if (iconEl) {
+    iconEl.className = `fas ${ad.icon} text-white text-lg`;
+  }
+}
+
+function adBannerClick() {
+  if (currentAdUrl) {
+    window.open(currentAdUrl, '_blank', 'noopener,noreferrer');
+  }
+}
+
+function closeAd() {
+  const banner = document.getElementById('ad-banner');
+  if (banner) {
+    banner.style.opacity = '0';
+    banner.style.transition = 'opacity 0.3s';
+    setTimeout(() => { banner.style.display = 'none'; }, 300);
+  }
+}
+// =============================================
+
 // Mobile menu toggle
 function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
@@ -55,14 +142,8 @@ function renderCalendar() {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const today = new Date();
 
-  // Sample slots for demo
-  const sampleSlots = {
-    5: [{ genre: 'コーチング', time: '10:00', color: 'blue' }],
-    10: [{ genre: 'NLP', time: '14:00', color: 'green' }],
-    15: [{ genre: 'カウンセリング', time: '19:00', color: 'pink' }],
-    20: [{ genre: 'ヒプノ', time: '11:00', color: 'purple' }],
-    25: [{ genre: 'コーチング', time: '16:00', color: 'blue' }, { genre: 'NLP', time: '20:00', color: 'green' }],
-  };
+  // No demo slots - slots will be populated from real user data
+  const sampleSlots = {};
 
   let html = '';
   // Day labels
@@ -234,6 +315,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize ad banner with random service
+  initAd();
+
   renderCalendar();
   
   // Animate elements on scroll

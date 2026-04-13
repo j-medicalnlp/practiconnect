@@ -1,4 +1,4 @@
-import { NavBar, Footer } from '../components/Layout'
+import { NavBar, Footer, AdBanner } from '../components/Layout'
 
 export const TopPage = () => (
   <>
@@ -100,14 +100,14 @@ export const TopPage = () => (
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {[
-            { num: '1,200+', label: '登録メンバー', icon: 'fa-users', color: 'text-blue-600' },
-            { num: '3,800+', label: '累計セッション', icon: 'fa-handshake', color: 'text-teal-600' },
-            { num: '4', label: '練習ジャンル', icon: 'fa-graduation-cap', color: 'text-green-600' },
-            { num: '98%', label: '満足度', icon: 'fa-star', color: 'text-amber-500' },
+            { icon: 'fa-users', color: 'text-blue-600', label: '登録メンバー' },
+            { icon: 'fa-handshake', color: 'text-teal-600', label: '累計セッション' },
+            { icon: 'fa-graduation-cap', color: 'text-green-600', label: '練習ジャンル' },
+            { icon: 'fa-star', color: 'text-amber-500', label: 'サポート体制' },
           ].map(stat => (
             <div class="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100 card-hover">
               <i class={`fas ${stat.icon} ${stat.color} text-2xl mb-2`}></i>
-              <p class="text-2xl font-bold text-gray-800">{stat.num}</p>
+              <p class="text-2xl font-bold text-gray-800">-</p>
               <p class="text-sm text-gray-500">{stat.label}</p>
             </div>
           ))}
@@ -197,7 +197,6 @@ export const TopPage = () => (
               border: 'border-blue-200',
               badge: 'tag-coaching',
               desc: '目標設定・傾聴・質問技法・フィードバック・コーチング実践',
-              users: '480名',
             },
             {
               icon: 'fa-heart',
@@ -207,7 +206,6 @@ export const TopPage = () => (
               border: 'border-pink-200',
               badge: 'tag-counseling',
               desc: '傾聴・共感・感情整理・ロールプレイ・ケーススタディ',
-              users: '390名',
             },
             {
               icon: 'fa-brain',
@@ -217,7 +215,6 @@ export const TopPage = () => (
               border: 'border-green-200',
               badge: 'tag-nlp',
               desc: 'アンカリング・リフレーミング・タイムライン・スワッシュパターン',
-              users: '260名',
             },
             {
               icon: 'fa-moon',
@@ -227,7 +224,6 @@ export const TopPage = () => (
               border: 'border-purple-200',
               badge: 'tag-hypno',
               desc: '誘導・トランス・サブモダリティ変換・ヒーリングセッション',
-              users: '130名',
             },
           ].map(g => (
             <div class={`${g.bg} rounded-2xl p-6 border ${g.border} card-hover`}>
@@ -236,9 +232,8 @@ export const TopPage = () => (
               </div>
               <h3 class="text-xl font-bold text-gray-800 mb-1">{g.title}</h3>
               <p class="text-sm text-gray-500 mb-3 leading-relaxed">{g.desc}</p>
-              <div class="flex items-center justify-between">
+              <div class="flex items-center">
                 <span class={`badge ${g.badge}`}>{g.title}</span>
-                <span class="text-xs text-gray-400"><i class="fas fa-user mr-1"></i>{g.users}</span>
               </div>
             </div>
           ))}
@@ -389,6 +384,13 @@ export const TopPage = () => (
             </div>
           ))}
         </div>
+      </div>
+    </section>
+
+    {/* Ad Banner */}
+    <section class="py-8 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AdBanner />
       </div>
     </section>
 

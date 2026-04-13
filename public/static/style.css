@@ -307,3 +307,14 @@ body {
   white-space: nowrap;
   z-index: 50;
 }
+
+/* Ad Banner */
+.ad-banner {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+  cursor: pointer;
+}
+.ad-banner:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.15);
+  border-color: #93c5fd;
+}

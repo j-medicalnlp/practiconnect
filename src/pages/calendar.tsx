@@ -124,121 +124,24 @@ export const CalendarPage = () => (
             </div>
           </div>
           <div class="flex items-center justify-between mt-3">
-            <p class="text-sm text-gray-500"><span id="search-count" class="font-bold text-blue-600">8件</span>の枠が見つかりました</p>
+            <p class="text-sm text-gray-500"><span id="search-count" class="font-bold text-blue-600">0件</span>の枠が見つかりました</p>
             <button onclick="applyFilter()" class="btn-primary text-sm py-1.5 px-3">
               <i class="fas fa-search"></i>検索
             </button>
           </div>
         </div>
 
-        {/* Slot cards */}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            {
-              name: '山田はるか',
-              avatar: '山',
-              color: 'from-blue-400 to-blue-600',
-              genres: ['コーチング', 'NLP'],
-              tags: ['tag-coaching', 'tag-nlp'],
-              date: '4月15日(火)',
-              time: '10:00〜11:00',
-              role: '施術者役希望',
-              tool: 'Google Meet',
-              lang: '日本語',
-              cert: 'ICFアソシエイト（取得予定）',
-              data_genre: 'coaching nlp',
-              data_role: 'practitioner',
-              data_tool: 'meet',
-            },
-            {
-              name: '鈴木たけし',
-              avatar: '鈴',
-              color: 'from-green-400 to-teal-500',
-              genres: ['NLP'],
-              tags: ['tag-nlp'],
-              date: '4月16日(水)',
-              time: '19:00〜20:30',
-              role: 'クライアント役希望',
-              tool: 'Zoom',
-              lang: '日本語・英語',
-              cert: 'NLPプラクティショナー',
-              data_genre: 'nlp',
-              data_role: 'client',
-              data_tool: 'zoom',
-            },
-            {
-              name: '伊藤まな',
-              avatar: '伊',
-              color: 'from-pink-400 to-pink-600',
-              genres: ['カウンセリング'],
-              tags: ['tag-counseling'],
-              date: '4月18日(金)',
-              time: '21:00〜22:00',
-              role: '両方可',
-              tool: 'Google Meet',
-              lang: '日本語',
-              cert: '臨床心理士（取得予定）',
-              data_genre: 'counseling',
-              data_role: 'both',
-              data_tool: 'meet',
-            },
-            {
-              name: '渡辺そら',
-              avatar: '渡',
-              color: 'from-purple-400 to-purple-600',
-              genres: ['ヒプノセラピー', 'NLP'],
-              tags: ['tag-hypno', 'tag-nlp'],
-              date: '4月20日(日)',
-              time: '14:00〜15:30',
-              role: '両方可',
-              tool: 'Zoom',
-              lang: '日本語',
-              cert: 'ヒプノセラピスト資格',
-              data_genre: 'hypno nlp',
-              data_role: 'both',
-              data_tool: 'zoom',
-            },
-          ].map(s => (
-            <div class="member-card bg-white rounded-2xl shadow-sm border border-gray-100 p-5 card-hover"
-              data-genre={s.data_genre} data-role={s.data_role} data-tool={s.data_tool}>
-              <div class="flex items-start gap-3 mb-3">
-                <div class={`w-10 h-10 rounded-full bg-gradient-to-br ${s.color} flex items-center justify-center flex-shrink-0`}>
-                  <span class="text-white font-bold">{s.avatar}</span>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <p class="font-semibold text-gray-800">{s.name}</p>
-                  <div class="flex flex-wrap gap-1 mt-0.5">
-                    {s.tags.map((tag, i) => <span class={`badge ${tag} text-xs`}>{s.genres[i]}</span>)}
-                  </div>
-                </div>
-                <span class="bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0">
-                  <i class="fas fa-circle text-green-500 text-xs mr-1"></i>募集中
-                </span>
-              </div>
-
-              <div class="bg-blue-50 rounded-xl p-3 mb-3 text-sm">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <i class="fas fa-calendar text-blue-500 text-xs"></i>
-                  <span class="font-bold text-blue-800">{s.date} {s.time}</span>
-                </div>
-                <div class="grid grid-cols-2 gap-1 text-xs text-blue-600">
-                  <span><i class="fas fa-user-tag mr-1"></i>{s.role}</span>
-                  <span><i class="fas fa-video mr-1"></i>{s.tool}</span>
-                  <span><i class="fas fa-language mr-1"></i>{s.lang}</span>
-                  <span><i class="fas fa-certificate mr-1"></i>{s.cert}</span>
-                </div>
-              </div>
-
-              <div class="flex gap-2">
-                <a href="/members/detail" class="flex-1 btn-primary text-sm py-2 justify-center">
-                  <i class="fas fa-paper-plane"></i>申し込む
-                </a>
-                <a href="/members/detail" class="btn-secondary text-sm py-2 px-3">
-                  <i class="fas fa-user text-xs"></i>
-                </a>
-              </div>
-            </div>
-          ))}
+        {/* Slot cards - empty state */}
+        <div id="slot-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="col-span-full flex flex-col items-center justify-center py-16 text-gray-400 border border-dashed border-gray-200 rounded-xl bg-white">
+            <i class="fas fa-calendar-search text-4xl mb-3 text-gray-200"></i>
+            <p class="text-base font-medium mb-1">現在募集中の枠はありません</p>
+            <p class="text-sm text-gray-400">条件を変更するか、あなた自身の枠を登録してみましょう</p>
+            <button class="mt-4 btn-primary text-sm"
+              onclick="document.getElementById('my-slots-tab')?.click(); document.getElementById('new-slot-modal')?.classList.remove('hidden')">
+              <i class="fas fa-plus"></i>空き枠を登録する
+            </button>
+          </div>
         </div>
       </div>
 
@@ -355,9 +258,11 @@ export const CalendarPage = () => (
         </div>
         <div class="p-4">
           <p class="text-sm text-gray-500 mb-3">この日の枠：</p>
-          <div class="session-card bg-white border border-gray-100 rounded-xl p-3 mb-3">
-            <p class="text-sm font-bold text-gray-800">10:00〜11:00 コーチング</p>
-            <p class="text-xs text-gray-500">施術者役・Google Meet</p>
+          <div id="day-slot-list">
+            <div class="flex flex-col items-center justify-center py-6 text-gray-400">
+              <i class="fas fa-calendar-times text-2xl mb-2 text-gray-200"></i>
+              <p class="text-sm">この日に登録された枠はありません</p>
+            </div>
           </div>
         </div>
         <div class="p-4 border-t border-gray-100">
